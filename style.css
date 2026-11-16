@@ -78,6 +78,26 @@ summary,
   }
 }
 
+/* Consistent footer source text and homepage signature across the site. */
+footer .wrap > p:last-child {
+  font-size: 0;
+}
+
+footer .wrap > p:last-child::after {
+  content: "Internetről származó információk, saját képek, AI tartalom.";
+  display: inline-block;
+  font-size: .95rem;
+}
+
+.about figcaption {
+  font-size: 0;
+}
+
+.about figcaption::before {
+  content: "N.E. – bringázás közben";
+  font-size: .95rem;
+}
+
 @media (prefers-reduced-motion: reduce) {
   nav[aria-label="Fő menü"] {
     transition: none;
