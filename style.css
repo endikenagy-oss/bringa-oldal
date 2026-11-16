@@ -15,54 +15,71 @@ summary,
   letter-spacing: -0.03em;
 }
 
-/* Compact, keyboard/touch-accessible responsive navigation. */
+/* Fixed left-side drawer; opens on hover, keyboard focus, or touch focus. */
 @media (max-width: 700px) {
-  nav {
+  nav[aria-label="Fő menü"] {
+    position: fixed;
+    top: 14px;
+    left: 14px;
+    right: auto;
+    z-index: 1000;
     width: 52px;
     height: 48px;
-    overflow: hidden;
-    display: block;
+    max-width: calc(100vw - 28px);
+    margin: 0;
     padding: 0;
+    display: block;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, .72);
     border-radius: 16px;
-    transition: width 0.2s ease, height 0.2s ease;
+    background: rgba(255, 255, 255, .88);
+    box-shadow: 0 8px 26px rgba(18, 30, 55, .16);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    transition: width .22s ease, height .22s ease, border-radius .22s ease;
   }
 
-  nav::before {
+  nav[aria-label="Fő menü"]::before {
     content: "☰";
+    width: 50px;
+    height: 46px;
     display: grid;
     place-items: center;
-    width: 52px;
-    height: 48px;
     color: var(--ink);
     font: 700 1.5rem/1 "Nunito", sans-serif;
     cursor: pointer;
   }
 
-  nav a {
+  nav[aria-label="Fő menü"] a {
     display: none;
-    text-align: center;
+    padding: 10px 16px;
+    text-align: left;
+    white-space: nowrap;
   }
 
-  nav:hover,
-  nav:focus-within {
-    width: fit-content;
+  nav[aria-label="Fő menü"]:hover,
+  nav[aria-label="Fő menü"]:focus-within {
+    width: min(250px, calc(100vw - 28px));
     height: auto;
+    max-height: calc(100dvh - 28px);
     padding: 6px;
+    overflow-y: auto;
+    border-radius: 20px;
   }
 
-  nav:hover::before,
-  nav:focus-within::before {
+  nav[aria-label="Fő menü"]:hover::before,
+  nav[aria-label="Fő menü"]:focus-within::before {
     display: none;
   }
 
-  nav:hover a,
-  nav:focus-within a {
+  nav[aria-label="Fő menü"]:hover a,
+  nav[aria-label="Fő menü"]:focus-within a {
     display: block;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  nav {
+  nav[aria-label="Fő menü"] {
     transition: none;
   }
 }
