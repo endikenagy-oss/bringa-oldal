@@ -32,11 +32,11 @@ summary,
     overflow: hidden;
     border: 1px solid rgba(255, 255, 255, .72);
     border-radius: 16px;
-    background: rgba(255, 255, 255, .88);
+    background: rgba(255, 255, 255, .92);
     box-shadow: 0 8px 26px rgba(18, 30, 55, .16);
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
-    transition: width .22s ease, height .22s ease, border-radius .22s ease;
+    transition: width .22s ease, max-height .22s ease, border-radius .22s ease;
   }
 
   nav[aria-label="Fő menü"]::before {
@@ -52,9 +52,16 @@ summary,
 
   nav[aria-label="Fő menü"] a {
     display: none;
-    padding: 10px 16px;
+    margin: 2px 0;
+    padding: 10px 14px;
+    border-radius: 12px;
     text-align: left;
     white-space: nowrap;
+  }
+
+  nav[aria-label="Fő menü"] a:hover,
+  nav[aria-label="Fő menü"] a:focus-visible {
+    background: rgba(18, 20, 31, .08);
   }
 
   nav[aria-label="Fő menü"]:hover,
