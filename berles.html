@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="hu"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Bérlés – Pedálozz bele!</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Nunito:wght@400;600;800&display=swap" rel="stylesheet"><link rel="stylesheet" href="style.css"></head><body>
-<nav aria-label="Fő menü"><a href="index.html">Főoldal</a><a href="tortenet.html">Történet</a><a href="tipusok.html">Típusok</a><a href="turak.html">Túrák</a><a href="berles.html" aria-current="page">Bérlés</a><a href="media.html">Média</a></nav>
+<nav aria-label="Fő menü"><a href="index.html">Főoldal</a><a href="tortenet.html">Történet</a><a href="tipusok.html">Típusok</a><a href="turak.html">Túrák</a><a href="berles.html" aria-current="page">Bérlés</a><a href="media.html">Média</a><a href="terkep.html">Térkép</a></nav>
 <main class="sub"><section id="berles"><div class="wrap">
   <div class="sec-head">
     <h2>Nincs bringád? Béreld!</h2>
-    <svg class="squiggle" viewBox="0 0 150 14" aria-hidden="true"><path d="M2 7q9-9 18 0t18 0 18 0 18 0 18 0 18 0 18 0 18 0" fill="none" stroke="#ffd23f" stroke-width="4" stroke-linecap="round"/></svg>
+    <svg class="squiggle" viewBox="0 0 150 14" aria-hidden="true"><path d="M2 7q9-9 18 0t18 0 18 0 18 0 18 0 18 0 18 0" fill="none" stroke="#ffd23f" stroke-width="4" stroke-linecap="round"/></svg>
     <p>A nagy tavak partján szinte minden településen találsz kölcsönzőt. Válassz tavat:</p>
   </div>
   <div class="tabs" role="tablist" aria-label="Tavak">
@@ -12,47 +12,17 @@
     <button role="tab" id="t2" aria-selected="false" aria-controls="p2" tabindex="-1">Tisza-tó</button>
     <button role="tab" id="t3" aria-selected="false" aria-controls="p3" tabindex="-1">Velencei-tó</button>
   </div>
-  <div class="card panel" id="p1" role="tabpanel" aria-labelledby="t1">
-    <h3>Balaton</h3><div class="towns"><span>Siófok</span><span>Balatonfüred</span><span>Keszthely</span><span>Tihany</span></div>
-    <p>A legnagyobb választék itt van: városi, trekking és e-bike is bérelhető, szezonban gyakran több kölcsönző is egymás mellett.</p>
-  </div>
-  <div class="card panel" id="p2" role="tabpanel" aria-labelledby="t2" hidden>
-    <h3>Tisza-tó</h3><div class="towns"><span>Poroszló</span><span>Tiszafüred</span><span>Sarud</span></div>
-    <p>Sík terep, ezért a kényelmes trekking vagy városi bringa is tökéletes. Sok helyen e-bike is van, ha a hosszabb táv vagy a szembeszél fáraszt.</p>
-  </div>
-  <div class="card panel" id="p3" role="tabpanel" aria-labelledby="t3" hidden>
-    <h3>Velencei-tó</h3><div class="towns"><span>Agárd</span><span>Velence</span><span>Gárdony</span></div>
-    <p>Kisebb, könnyen körbejárható tó, kényelmes egynapos kirándulásra. Budapestről vonattal és autóval is jól elérhető.</p>
-  </div>
-  <div class="card" style="margin-top:26px;background:#fffbe6">
-    <h3 style="font-size:1.4rem;margin-bottom:6px">Bérlés előtt érdemes</h3>
-    <ul class="tips">
-      <li>főszezonban (nyár, hétvége) előre foglalni,</li>
-      <li>megkérdezni, hogy sisak, zár és lámpa jár-e a bérleti díjhoz,</li>
-      <li>kipróbálni a féket és a váltót elindulás előtt,</li>
-      <li>e-bike-nál megnézni, mennyire van feltöltve az akksi, és hány km-re elég.</li>
-    </ul>
-  </div>
-<div class="card" style="margin-top:26px"><h3 style="font-size:1.4rem">Tudj meg többet</h3><div class="links"><a href="https://www.bosch-ebike.com" target="_blank" rel="noopener">Bosch eBike</a><a href="https://hu.wikipedia.org/wiki/Ker%C3%A9kp%C3%A1r" target="_blank" rel="noopener">Kerékpár (Wikipédia)</a></div></div></div></section></main>
+  <div class="card panel" id="p1" role="tabpanel" aria-labelledby="t1"><h3>Balaton</h3><div class="towns"><span>Siófok</span><span>Balatonfüred</span><span>Keszthely</span><span>Tihany</span></div><p>A legnagyobb választék itt van: városi, trekking és e-bike is bérelhető, szezonban gyakran több kölcsönző is egymás mellett.</p></div>
+  <div class="card panel" id="p2" role="tabpanel" aria-labelledby="t2" hidden><h3>Tisza-tó</h3><div class="towns"><span>Poroszló</span><span>Tiszafüred</span><span>Sarud</span></div><p>Sík terep, ezért a kényelmes trekking vagy városi bringa is tökéletes. Sok helyen e-bike is van, ha a hosszabb táv vagy a szembeszél fáraszt.</p></div>
+  <div class="card panel" id="p3" role="tabpanel" aria-labelledby="t3" hidden><h3>Velencei-tó</h3><div class="towns"><span>Agárd</span><span>Velence</span><span>Gárdony</span></div><p>Kisebb, könnyen körbejárható tó, kényelmes egynapos kirándulásra. Budapestről vonattal és autóval is jól elérhető.</p></div>
+  <div class="card" style="margin-top:26px;background:#fffbe6"><h3 style="font-size:1.4rem;margin-bottom:6px">Bérlés előtt érdemes</h3><ul class="tips"><li>főszezonban (nyár, hétvége) előre foglalni,</li><li>megkérdezni, hogy sisak, zár és lámpa jár-e a bérleti díjhoz,</li><li>kipróbálni a féket és a váltót elindulás előtt,</li><li>e-bike-nál megnézni, mennyire van feltöltve az akksi, és hány km-re elég.</li></ul></div>
+  <div class="card" style="margin-top:26px"><h3 style="font-size:1.4rem">Tudj meg többet</h3><div class="links"><a href="https://www.bosch-ebike.com" target="_blank" rel="noopener">Bosch eBike</a><a href="https://hu.wikipedia.org/wiki/Ker%C3%A9kp%C3%A1r" target="_blank" rel="noopener">Kerékpár (Wikipédia)</a></div></div>
+</div></section></main>
 <footer><div class="wrap"><p class="tag">Vigyázz magadra, hordj sisakot, és tekerj sokat! 🚲</p><p>Készítette: Nagy Endre (P0LIHV) · E-tanulás · 2026/27/1</p><p>Források: [ide írd a felhasznált forrásokat]</p></div></footer>
 <script>
 (function(){
   var tabs=[].slice.call(document.querySelectorAll('[role=tab]'));
-  function select(t){
-    tabs.forEach(function(b){
-      var on=b===t;
-      b.setAttribute('aria-selected',on);
-      b.tabIndex=on?0:-1;
-      document.getElementById(b.getAttribute('aria-controls')).hidden=!on;
-    });
-  }
-  tabs.forEach(function(b,i){
-    b.addEventListener('click',function(){select(b)});
-    b.addEventListener('keydown',function(e){
-      var n=e.key==='ArrowRight'?i+1:e.key==='ArrowLeft'?i-1:null;
-      if(n===null)return;
-      n=(n+tabs.length)%tabs.length;tabs[n].focus();select(tabs[n]);
-    });
-  });
+  function select(t){tabs.forEach(function(b){var on=b===t;b.setAttribute('aria-selected',on);b.tabIndex=on?0:-1;document.getElementById(b.getAttribute('aria-controls')).hidden=!on;});}
+  tabs.forEach(function(b,i){b.addEventListener('click',function(){select(b)});b.addEventListener('keydown',function(e){var n=e.key==='ArrowRight'?i+1:e.key==='ArrowLeft'?i-1:null;if(n===null)return;n=(n+tabs.length)%tabs.length;tabs[n].focus();select(tabs[n]);});});
 })();
 </script></body></html>
