@@ -1,15 +1,23 @@
 <!DOCTYPE html>
-<html lang="hu"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Főoldal – Pedálozz bele!</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Nunito:wght@400;600;800&display=swap" rel="stylesheet"><link rel="stylesheet" href="style.css"></head><body>
+<html lang="hu"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Főoldal – Pedálozz bele!</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Nunito:wght@400;600;800&display=swap" rel="stylesheet"><link rel="stylesheet" href="style.css"><style>
+.hero>.sun,.hero>.cloud{position:absolute;display:block;height:auto;pointer-events:none;z-index:1}
+.hero>.sun{width:clamp(64px,9vw,100px);top:clamp(24px,5vw,56px);right:clamp(24px,8vw,100px)}
+.hero>.cloud{width:clamp(100px,15vw,150px)}.hero>.cloud.c1{top:22%;right:18%}.hero>.cloud.c2{top:42%;left:8%}
+.hero>.wrap{position:relative;z-index:2}.hero .scene{position:relative;z-index:2;isolation:isolate}
+.hero .scene .hills{position:absolute;inset:0;width:100%;height:100%;z-index:-1}
+.hero .scene .bike{width:clamp(200px,36vw,400px);height:auto;left:50%;margin-left:0;bottom:12px}
+.hero .scene .bike .wheel{animation-duration:3.2s}.hero .scene .bike .crank{animation-duration:4.5s}
+.hero .scene .bike.riding-across{animation:rideAcross 2.4s ease-in-out both!important}
+@keyframes rideAcross{from{transform:translateX(-70vw)}to{transform:translateX(70vw)}}
+@keyframes ridein{from{transform:translateX(-90vw)}to{transform:translateX(-50%)}}
+@media(max-width:600px){.hero>.cloud.c1{top:18%;right:8%}.hero>.cloud.c2{top:38%;left:5%}}
+</style></head><body>
 <nav aria-label="Fő menü"><a href="index.html" aria-current="page">Főoldal</a><a href="tortenet.html">Történet</a><a href="tipusok.html">Típusok</a><a href="turak.html">Túrák</a><a href="berles.html">Bérlés</a><a href="media.html">Média</a><a href="terkep.html">Térkép</a></nav>
 <header class="hero">
   <svg class="sun" viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="22" fill="#ffd23f" stroke="#1b2a41" stroke-width="4"/><g stroke="#1b2a41" stroke-width="5" stroke-linecap="round"><path d="M50 6v14M50 80v14M6 50h14M80 50h14M19 19l10 10M71 71l10 10M19 81l10-10M71 29l10-10"/></g></svg>
   <svg class="cloud c1" viewBox="0 0 150 70" aria-hidden="true"><path d="M30 62a22 22 0 0 1 2-44 30 30 0 0 1 56-6 26 26 0 0 1 34 22 20 20 0 0 1-4 28z"/></svg>
   <svg class="cloud c2" viewBox="0 0 150 70" aria-hidden="true"><path d="M30 62a22 22 0 0 1 2-44 30 30 0 0 1 56-6 26 26 0 0 1 34 22 20 20 0 0 1-4 28z"/></svg>
-  <div class="wrap">
-    <span class="sticker">Kerékpározás 🚲 Magyarország</span>
-    <h1>Pedálozz<br>bele!</h1>
-    <p class="lead">Honnan indult a bringa, melyiket válaszd, merre érdemes tekerni, és hol kapsz egyet, ha nincs saját.</p><a class="btn" href="tortenet.html">Irány a történet!</a>
-  </div>
+  <div class="wrap"><span class="sticker">Kerékpározás 🚲 Magyarország</span><h1>Pedálozz<br>bele!</h1><p class="lead">Honnan indult a bringa, melyiket válaszd, merre érdemes tekerni, és hol kapsz egyet, ha nincs saját.</p><a class="btn" href="tortenet.html">Irány a történet!</a></div>
   <div class="scene" aria-hidden="true">
     <svg class="hills" viewBox="0 0 1000 200" preserveAspectRatio="none"><path d="M0 200V120Q120 40 260 110T520 90T780 100T1000 70V200z" fill="#00b3a4" stroke="#1b2a41" stroke-width="4"/><path d="M0 200V160Q200 120 360 145T720 130T1000 150V200z" fill="#7be0c3" stroke="#1b2a41" stroke-width="4"/></svg>
     <svg class="bike" viewBox="0 0 400 220">
@@ -19,13 +27,10 @@
         <path d="M90 150L170 150L262 82L150 85L170 150M90 150L150 85M262 82L310 150" stroke="#ff5a5f"/>
         <path d="M262 82L258 60L284 56M138 76H170" stroke="#1b2a41"/>
         <g class="crank"><circle cx="170" cy="150" r="9" fill="#ffd23f"/></g>
-        <path d="M150 76L205 112L172 150" stroke="#00b3a4"/>
-        <path d="M150 76L222 38L262 60" stroke="#00b3a4"/>
+        <path d="M150 76L205 112L172 150" stroke="#00b3a4"/><path d="M150 76L222 38L262 60" stroke="#00b3a4"/>
       </g>
-      <circle cx="232" cy="20" r="15" fill="#ffd23f" stroke="#1b2a41" stroke-width="5"/>
-      <path d="M220 12q12-14 28-2" fill="#ff5a5f" stroke="#1b2a41" stroke-width="5" stroke-linecap="round"/>
-    </svg>
-    <div class="road"></div>
+      <circle cx="232" cy="20" r="15" fill="#ffd23f" stroke="#1b2a41" stroke-width="5"/><path d="M220 12q12-14 28-2" fill="#ff5a5f" stroke="#1b2a41" stroke-width="5" stroke-linecap="round"/>
+    </svg><div class="road"></div>
   </div>
 </header><main><section style="padding-top:60px"><div class="wrap"><div class="about">
 <figure><div class="ph portrait"><img src="rolam.jpeg" alt="Rólam bringázás közben" onerror="this.remove()"></div><figcaption>[Monogram] – bringázás közben</figcaption></figure>
@@ -33,12 +38,31 @@
 <p>A nevem Endre, nagyjából 3 éve szerettem meg a kerékpározást, a munkahelyemnek köszönhetően. Azóta ha nem is rendszeresen, de szoktam kerékpározni és hosszabb-rövidebb távokat tekerni. Ezen az oldalon megosztom, hogyan indult ez az egész, melyik volt a kedvenc útvonalam, és mit érdemes tudni a bringázásról.</p>
 <p><b>Hallgasd meg a bemutatkozásomat:</b></p><audio controls preload="none" src="audio/podcast.mp3">A böngésződ nem támogatja a hanganyagot.</audio></div></div></div></section>
 <section style="padding-top:30px"><div class="wrap"><div class="sec-head"><h2>Merre menjünk tovább?</h2></div><div class="nextgrid">
-<a href="tortenet.html"><div class="card"><span style="font-size:2rem">📜</span><h3>Történet</h3><p>Kétszáz év, a futógéptől az e-bike-ig.</p></div></a>
-<a href="tipusok.html"><div class="card"><span style="font-size:2rem">⚡</span><h3>Típusok</h3><p>Országúti, MTB, e-bike és a Bosch.</p></div></a>
-<a href="turak.html"><div class="card"><span style="font-size:2rem">🗺️</span><h3>Túrák</h3><p>Balaton, Tisza-tó, Duna, Bükk.</p></div></a>
-<a href="berles.html"><div class="card"><span style="font-size:2rem">🚲</span><h3>Bérlés</h3><p>Hol kapsz bringát a tavaknál?</p></div></a>
-<a href="media.html"><div class="card"><span style="font-size:2rem">🎬</span><h3>Média</h3><p>Galéria, videó, hanganyag.</p></div></a>
-<a href="terkep.html"><div class="card"><span style="font-size:2rem">📍</span><h3>Térkép</h3><p>Bringás helyek a térképen.</p></div></a>
+<a href="tortenet.html"><div class="card"><span style="font-size:2rem">📜</span><h3>Történet</h3><p>Kétszáz év, a futógéptől az e-bike-ig.</p></div></a><a href="tipusok.html"><div class="card"><span style="font-size:2rem">⚡</span><h3>Típusok</h3><p>Országúti, MTB, e-bike és a Bosch.</p></div></a><a href="turak.html"><div class="card"><span style="font-size:2rem">🗺️</span><h3>Túrák</h3><p>Balaton, Tisza-tó, Duna, Bükk.</p></div></a><a href="berles.html"><div class="card"><span style="font-size:2rem">🚲</span><h3>Bérlés</h3><p>Hol kapsz bringát a tavaknál?</p></div></a><a href="media.html"><div class="card"><span style="font-size:2rem">🎬</span><h3>Média</h3><p>Galéria, videó, hanganyag.</p></div></a><a href="terkep.html"><div class="card"><span style="font-size:2rem">📍</span><h3>Térkép</h3><p>Bringás helyek a térképen.</p></div></a>
 </div></div></section></main>
 <footer><div class="wrap"><p class="tag">Vigyázz magadra, hordj sisakot, és tekerj sokat! 🚲</p><p>Készítette: Nagy Endre (P0LIHV) · E-tanulás · 2026/27/1</p><p>Források: [ide írd a felhasznált forrásokat]</p></div></footer>
+<script>
+(function(){
+  var bike = document.querySelector('.hero .bike');
+  var previousY = window.scrollY;
+  var animating = false;
+  function onScroll(){
+    var currentY = window.scrollY;
+    if(currentY < previousY && !animating){
+      animating = true;
+      bike.classList.remove('riding-across');
+      void bike.getBoundingClientRect();
+      bike.classList.add('riding-across');
+    }
+    previousY = currentY;
+  }
+  bike.addEventListener('animationend', function(event){
+    if(event.animationName === 'rideAcross'){
+      bike.classList.remove('riding-across');
+      animating = false;
+    }
+  });
+  window.addEventListener('scroll', onScroll, {passive:true});
+})();
+</script>
 </body></html>
