@@ -32,11 +32,24 @@
         <path d="M90 150L170 150L262 82L150 85L170 150M90 150L150 85M262 82L310 150" stroke="#ff5a5f"/>
         <path d="M262 82L258 60L284 56M138 76H170" stroke="#1b2a41"/>
         <g class="crank"><circle cx="170" cy="150" r="9" fill="#ffd23f"/></g>
-        <!-- A kerékpáros törzse, karjai és lábai csatlakozó vonalakkal. -->
-        <path d="M158 76L205 52L222 38L248 48L262 60M158 76L205 112L172 150M158 76L222 96L170 150" stroke="#00b3a4"/>
       </g>
-      <circle cx="232" cy="20" r="15" fill="#ffd23f" stroke="#1b2a41" stroke-width="5"/>
-      <path d="M220 12q12-14 28-2" fill="#ff5a5f" stroke="#1b2a41" stroke-width="5" stroke-linecap="round"/>
+      <!-- Előrehajló, sisakos bringás: külön ruhatest, karok és pedálozó lábak. -->
+      <g stroke="#1b2a41" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+        <!-- lábak és cipők -->
+        <path d="M189 88Q204 98 215 112L190 143L185 153" fill="none" stroke-width="11"/>
+        <path d="M189 88Q178 103 162 116L169 145L164 153" fill="none" stroke-width="11"/>
+        <path d="M185 153l-13 1-5 5h20l5-4M164 153l-12 1-4 5h20l4-4" fill="#ff5a5f"/>
+        <!-- felsőtest és karok -->
+        <path d="M214 48Q202 49 194 59L177 83Q184 94 197 94L219 69L239 57" fill="#00b3a4" stroke-width="4"/>
+        <path d="M214 51L238 51L267 56L281 56" fill="none" stroke="#f2b28b" stroke-width="7"/>
+        <path d="M214 50Q226 43 235 47L246 53" fill="none" stroke="#f2b28b" stroke-width="7"/>
+        <path d="M277 56l7 0" fill="none" stroke-width="5"/>
+        <!-- fej, nyak és bukósisak -->
+        <path d="M215 44l4 8" fill="none" stroke="#f2b28b" stroke-width="7"/>
+        <circle cx="231" cy="29" r="13" fill="#f2b28b" stroke-width="3"/>
+        <path d="M217 27Q220 13 234 15Q245 17 246 27L239 27Q231 21 217 27Z" fill="#ffd23f" stroke-width="3"/>
+        <path d="M219 27l-4 3M242 27l5 2" fill="none" stroke-width="2"/>
+      </g>
     </svg>
     <div class="road"></div>
   </div>
