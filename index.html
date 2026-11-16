@@ -1,5 +1,18 @@
 <!DOCTYPE html>
-<html lang="hu"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Főoldal – Pedálozz bele!</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Nunito:wght@400;600;800&display=swap" rel="stylesheet"><link rel="stylesheet" href="style.css"></head><body>
+<html lang="hu"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Főoldal – Pedálozz bele!</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Nunito:wght@400;600;800&display=swap" rel="stylesheet"><link rel="stylesheet" href="style.css"><style>
+/* Főoldali SVG-díszek: ne foglaljanak helyet a tartalom folyásában. */
+.hero>.sun,.hero>.cloud{position:absolute;display:block;height:auto;pointer-events:none;z-index:1}
+.hero>.sun{width:clamp(64px,9vw,100px);top:clamp(24px,5vw,56px);right:clamp(24px,8vw,100px)}
+.hero>.cloud{width:clamp(100px,15vw,150px)}
+.hero>.cloud.c1{top:22%;right:18%}
+.hero>.cloud.c2{top:42%;left:8%}
+.hero>.wrap{position:relative;z-index:2}
+.hero .scene{position:relative;z-index:2;isolation:isolate}
+.hero .scene .hills{position:absolute;inset:0;width:100%;height:100%;z-index:-1}
+.hero .scene .bike{width:clamp(200px,36vw,400px);height:auto;left:50%;margin-left:0;bottom:12px}
+@keyframes ridein{from{transform:translateX(-90vw)}to{transform:translateX(-50%)}}
+@media(max-width:600px){.hero>.cloud.c1{top:18%;right:8%}.hero>.cloud.c2{top:38%;left:5%}}
+</style></head><body>
 <nav aria-label="Fő menü"><a href="index.html" aria-current="page">Főoldal</a><a href="tortenet.html">Történet</a><a href="tipusok.html">Típusok</a><a href="turak.html">Túrák</a><a href="berles.html">Bérlés</a><a href="media.html">Média</a></nav>
 <header class="hero">
   <svg class="sun" viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="22" fill="#ffd23f" stroke="#1b2a41" stroke-width="4"/><g stroke="#1b2a41" stroke-width="5" stroke-linecap="round"><path d="M50 6v14M50 80v14M6 50h14M80 50h14M19 19l10 10M71 71l10 10M81 19L71 29M29 71L19 81"/></g></svg>
@@ -19,8 +32,8 @@
         <path d="M90 150L170 150L262 82L150 85L170 150M90 150L150 85M262 82L310 150" stroke="#ff5a5f"/>
         <path d="M262 82L258 60L284 56M138 76H170" stroke="#1b2a41"/>
         <g class="crank"><circle cx="170" cy="150" r="9" fill="#ffd23f"/></g>
-        <path d="M150 76L205 112L172 150" stroke="#00b3a4"/>
-        <path d="M150 76L222 38L262 60" stroke="#00b3a4"/>
+        <!-- A kerékpáros törzse, karjai és lábai csatlakozó vonalakkal. -->
+        <path d="M158 76L205 52L222 38L248 48L262 60M158 76L205 112L172 150M158 76L222 96L170 150" stroke="#00b3a4"/>
       </g>
       <circle cx="232" cy="20" r="15" fill="#ffd23f" stroke="#1b2a41" stroke-width="5"/>
       <path d="M220 12q12-14 28-2" fill="#ff5a5f" stroke="#1b2a41" stroke-width="5" stroke-linecap="round"/>
