@@ -1,5 +1,5 @@
-/* Reuse the existing shared site styles, then apply one consistent modern display font globally. */
-@import url("https://raw.githubusercontent.com/endikenagy-oss/bringa-oldal/53f9b0027ca721d916a864aba62654d7c856c1f0/style.css");
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap");
+@import url("https://cdn.jsdelivr.net/gh/endikenagy-oss/bringa-oldal@53f9b0027ca721d916a864aba62654d7c856c1f0/style.css");
 
 :root {
   --display: "Nunito", "Segoe UI", system-ui, sans-serif;
@@ -13,4 +13,56 @@ summary,
 .tag {
   font-family: "Nunito", "Segoe UI", system-ui, sans-serif;
   letter-spacing: -0.03em;
+}
+
+/* Compact, keyboard/touch-accessible responsive navigation. */
+@media (max-width: 700px) {
+  nav {
+    width: 52px;
+    height: 48px;
+    overflow: hidden;
+    display: block;
+    padding: 0;
+    border-radius: 16px;
+    transition: width 0.2s ease, height 0.2s ease;
+  }
+
+  nav::before {
+    content: "☰";
+    display: grid;
+    place-items: center;
+    width: 52px;
+    height: 48px;
+    color: var(--ink);
+    font: 700 1.5rem/1 "Nunito", sans-serif;
+    cursor: pointer;
+  }
+
+  nav a {
+    display: none;
+    text-align: center;
+  }
+
+  nav:hover,
+  nav:focus-within {
+    width: fit-content;
+    height: auto;
+    padding: 6px;
+  }
+
+  nav:hover::before,
+  nav:focus-within::before {
+    display: none;
+  }
+
+  nav:hover a,
+  nav:focus-within a {
+    display: block;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  nav {
+    transition: none;
+  }
 }
