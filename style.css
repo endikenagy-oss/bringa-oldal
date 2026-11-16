@@ -13,7 +13,7 @@ a{color:inherit}
 .wrap{max-width:1080px;margin:0 auto;padding:0 20px}
 
 /* nav */
-nav{position:sticky;top:10px;z-index:10;display:flex;gap:6px;flex-wrap:wrap;justify-content:center;margin:10px auto 0;width:fit-content;max-width:calc(100% - 20px);background:var(--white);border:3px solid var(--ink);border-radius:999px;padding:6px 10px;box-shadow:4px 4px 0 var(--ink)}
+nav{position:sticky;top:10px;z-index:10;display:flex;gap:6px;flex-wrap:wrap;justify-content:center;margin:10px auto 0;width:fit-content;max-width:calc(100% - 20px);background:var(--white);border:3px solid var(--ink);border-radius:999px;padding:8px 12px;box-shadow:0 6px 0 var(--ink)}
 nav a{text-decoration:none;font-weight:800;font-size:.95rem;padding:4px 12px;border-radius:999px}
 nav a:hover{background:var(--sun)}
 
@@ -69,7 +69,7 @@ summary::after{content:"+";margin-left:auto;width:32px;height:32px;display:grid;
 details[open] summary::after{content:"–"}
 details p{margin:12px 0 0}
 .ebike{grid-column:1/-1;background:var(--ink);color:var(--white);border-color:var(--ink);box-shadow:6px 6px 0 var(--bosch);transform:none!important}
-.ebike[open]{background:var(--ink)}
+details.card.ebike[open]{background:var(--ink)}
 .ebike summary::after{color:var(--ink)}
 .ebike .sticker{background:var(--bosch);color:var(--white);border-color:var(--white)}
 .facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:14px;margin-top:16px}
@@ -86,7 +86,8 @@ details p{margin:12px 0 0}
 
 /* rental */
 .tabs{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:22px}
-.tabs button{font:800 1.05rem var(--display);color:var(--ink);background:var(--white);border:3px solid var(--ink);border-radius:999px;padding:10px 20px;cursor:pointer;box-shadow:4px 4px 0 var(--ink);transition:transform .12s,box-shadow .12s}
+.tabs button{font:800 1.05rem var(--display);color:var(--ink);background:var(--white);border:3px solid var(--ink);border-radius:999px;padding:10px 20px;cursor:pointer;box-shadow:4px 4px 0 var(--ink)}
+.tabs button:hover{background:var(--sky)}
 .tabs button:active{transform:translate(3px,3px);box-shadow:1px 1px 0 var(--ink)}
 .tabs button[aria-selected="true"]{background:var(--teal);color:var(--white)}
 .panel[hidden]{display:none}
@@ -108,13 +109,13 @@ footer p{margin:6px 0}
 }
 
 nav a[aria-current]{background:var(--sun)}
-.btn{display:inline-block;margin-top:18px;font:800 1.15rem var(--display);text-decoration:none;background:var(--coral);color:var(--white);border:3px solid var(--ink);border-radius:999px;padding:12px 26px;box-shadow:5px 5px 0 var(--ink)}
+.btn{display:inline-block;margin-top:18px;font:800 1.15rem var(--display);text-decoration:none;background:var(--coral);color:var(--white);border:3px solid var(--ink);border-radius:999px;padding:12px 24px;box-shadow:4px 4px 0 var(--ink)}
 .btn:hover{background:var(--violet)}
 .about{display:grid;grid-template-columns:minmax(220px,340px) 1fr;gap:30px;align-items:center}
 @media (max-width:700px){.about{grid-template-columns:1fr}}
 figure{margin:0}
 figcaption{font-weight:800;margin-top:8px;font-size:.95rem}
-.ph{position:relative;aspect-ratio:4/3;border:3px dashed var(--ink);border-radius:20px;background:#fff;display:grid;place-items:center;text-align:center;padding:14px;font-weight:800;overflow:hidden}
+.ph{position:relative;aspect-ratio:4/3;border:3px dashed var(--ink);border-radius:20px;background:#fff;display:grid;place-items:center;text-align:center;padding:14px;font-weight:800;overflow:hidden;box-shadow:6px 6px 0 var(--ink)}
 .ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .ph.portrait{aspect-ratio:3/4}
 .gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:24px}
