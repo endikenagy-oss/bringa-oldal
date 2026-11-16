@@ -3,11 +3,13 @@
 .hero>.sun,.hero>.cloud{position:absolute;display:block;height:auto;pointer-events:none;z-index:1}
 .hero>.sun{width:clamp(64px,9vw,100px);top:clamp(24px,5vw,56px);right:clamp(24px,8vw,100px)}
 .hero>.cloud{width:clamp(100px,15vw,150px)}.hero>.cloud.c1{top:22%;right:18%}.hero>.cloud.c2{top:42%;left:8%}
-.hero>.wrap{position:relative;z-index:2}.hero .scene{position:relative;z-index:2;isolation:isolate}
+.hero>.wrap{position:relative;z-index:2}.hero .scene{position:relative;z-index:2;isolation:isolate;overflow:hidden}
 .hero .scene .hills{position:absolute;inset:0;width:100%;height:100%;z-index:-1}
 .hero .scene .bike{width:clamp(200px,36vw,400px);height:auto;left:50%;margin-left:0;bottom:12px}
 .hero .scene .bike .wheel{animation-duration:3.2s}.hero .scene .bike .crank{animation-duration:4.5s}
 .hero .scene .bike.riding-across{animation:rideAcross 2.4s ease-in-out both!important}
+.hero .road{height:3px;bottom:20px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.55),transparent);border-radius:999px}
+.hero .road::after{inset:-3px 0;background:radial-gradient(circle,rgba(255,255,255,.7) 1px,transparent 1.5px);background-size:36px 6px;opacity:.5}
 @keyframes rideAcross{from{transform:translateX(-70vw)}to{transform:translateX(70vw)}}
 @keyframes ridein{from{transform:translateX(-90vw)}to{transform:translateX(-50%)}}
 @media(max-width:600px){.hero>.cloud.c1{top:18%;right:8%}.hero>.cloud.c2{top:38%;left:5%}}
@@ -19,7 +21,19 @@
   <svg class="cloud c2" viewBox="0 0 150 70" aria-hidden="true"><path d="M30 62a22 22 0 0 1 2-44 30 30 0 0 1 56-6 26 26 0 0 1 34 22 20 20 0 0 1-4 28z"/></svg>
   <div class="wrap"><span class="sticker">Kerékpározás 🚲 Magyarország</span><h1>Pedálozz<br>bele!</h1><p class="lead">Honnan indult a bringa, melyiket válaszd, merre érdemes tekerni, és hol kapsz egyet, ha nincs saját.</p><a class="btn" href="tortenet.html">Irány a történet!</a></div>
   <div class="scene" aria-hidden="true">
-    <svg class="hills" viewBox="0 0 1000 200" preserveAspectRatio="none"><path d="M0 200V120Q120 40 260 110T520 90T780 100T1000 70V200z" fill="#00b3a4" stroke="#1b2a41" stroke-width="4"/><path d="M0 200V160Q200 120 360 145T720 130T1000 150V200z" fill="#7be0c3" stroke="#1b2a41" stroke-width="4"/></svg>
+    <svg class="hills" viewBox="0 0 1000 260" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="landFar" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#a9b8ff" stop-opacity=".42"/><stop offset="1" stop-color="#7c8df3" stop-opacity=".22"/></linearGradient>
+        <linearGradient id="landMid" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#64d8cb"/><stop offset="1" stop-color="#38bfae"/></linearGradient>
+        <linearGradient id="landNear" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#b5f0d7"/><stop offset="1" stop-color="#7bd9bd"/></linearGradient>
+        <linearGradient id="trail" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#ffd978" stop-opacity="0"/><stop offset=".5" stop-color="#fff1bd" stop-opacity=".8"/><stop offset="1" stop-color="#ffd978" stop-opacity="0"/></linearGradient>
+      </defs>
+      <path d="M0 150C115 85 194 122 285 101S466 48 570 111s185 6 264 13 112 31 166 4v132H0Z" fill="url(#landFar)"/>
+      <path d="M0 184c112-35 177-94 292-61s146 69 269 17 194-45 278 2 105 53 161 29v79H0Z" fill="url(#landMid)" opacity=".92"/>
+      <path d="M0 210c128-46 215-16 319-31s170-55 286-15 177 59 264 31 94-18 131-9v64H0Z" fill="url(#landNear)"/>
+      <path d="M0 233c143-34 216 5 341-9s183-23 291-4 201 29 368-2" fill="none" stroke="url(#trail)" stroke-width="4" stroke-linecap="round" opacity=".65"/>
+      <g fill="#fff" opacity=".36"><circle cx="92" cy="138" r="2"/><circle cx="142" cy="125" r="1.5"/><circle cx="867" cy="121" r="2"/><circle cx="916" cy="145" r="1.5"/></g>
+    </svg>
     <svg class="bike" viewBox="0 0 400 220">
       <g fill="none" stroke="#1b2a41" stroke-width="7" stroke-linecap="round" stroke-linejoin="round">
         <g class="wheel"><circle cx="90" cy="150" r="52"/><path d="M90 98v104M38 150h104M53 113l74 74M127 113l-74 74" stroke-width="3"/></g>
