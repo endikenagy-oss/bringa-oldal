@@ -8,17 +8,39 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Nunito:wght@400;600;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
+  <style>
+    .gallery figure { cursor: zoom-in; }
+    .gallery img { display: block; width: 100%; height: auto; }
+    .gallery-viewer {
+      width: min(94vw, 1100px);
+      max-width: none;
+      max-height: 92vh;
+      padding: 12px;
+      border: 0;
+      border-radius: 16px;
+      background: #101522;
+      color: #fff;
+      box-shadow: 0 20px 70px rgba(0, 0, 0, .45);
+    }
+    .gallery-viewer::backdrop { background: rgba(8, 12, 22, .82); }
+    .gallery-viewer img { display: block; max-width: 100%; max-height: 78vh; margin: auto; object-fit: contain; }
+    .gallery-viewer figcaption { padding: 10px 4px 2px; text-align: center; }
+    .gallery-viewer button { min-width: 44px; min-height: 44px; border: 0; border-radius: 10px; cursor: pointer; font: inherit; }
+    .gallery-viewer .viewer-close { display: block; margin: 0 0 8px auto; padding: 6px 14px; }
+    .gallery-viewer .viewer-nav { display: flex; justify-content: space-between; gap: 12px; margin-top: 8px; }
+    .uploaded-video { display: block; width: 100%; height: auto; max-height: 75vh; }
+  </style>
 </head>
 <body>
 <nav aria-label="Fő menü"><a href="index.html">Főoldal</a><a href="tortenet.html">Történet</a><a href="tipusok.html">Típusok</a><a href="turak.html">Túrák</a><a href="berles.html">Bérlés</a><a href="media.html" aria-current="page">Média</a><a href="terkep.html">Térkép</a><a href="infok.html">Infók</a></nav>
 <main class="sub">
   <section>
     <div class="wrap">
-      <div class="sec-head"><h2>Galéria</h2><p>Képek a kedvenc túráimról és bringáimról.</p></div>
-      <div class="gallery">
-        <figure><div class="ph"><img src="kep1.jpg" alt="Kerékpártúra"></div></figure>
-        <figure><div class="ph"><img src="kep2.HEIC" alt="Bringám"></div></figure>
-        <figure><div class="ph"><img src="kep3.HEIC" alt="Kilátás az útról"></div></figure>
+      <div class="sec-head"><h2>Galéria</h2><p>Kattints egy képre a nagyított galéria nézethez.</p></div>
+      <div class="gallery" id="photoGallery">
+        <figure><div class="ph"><img src="kep1.jpg" alt="Kerékpártúra" tabindex="0"></div></figure>
+        <figure><div class="ph"><img src="kep2.HEIC" alt="Bringám" tabindex="0"></div></figure>
+        <figure><div class="ph"><img src="kep3.HEIC" alt="Kilátás az útról" tabindex="0"></div></figure>
       </div>
     </div>
   </section>
@@ -28,7 +50,7 @@
       <div class="video"><iframe src="https://www.youtube.com/embed/d247_lY-D94" title="Kerékpáros videó – YouTube" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe></div>
       <p><a href="https://youtu.be/d247_lY-D94?is=5oTOkIqfPgryDg_7" target="_blank" rel="noopener noreferrer">A videó megnyitása a YouTube-on</a></p>
       <div class="sec-head"><h3>Feltöltött videó</h3></div>
-      <div class="video"><video controls preload="metadata" playsinline aria-label="Feltöltött kerékpáros videó"><source src="Video.MP4" type="video/mp4">A böngésződ nem támogatja a videó lejátszását.</video></div>
+      <div class="video"><video class="uploaded-video" controls="controls" preload="metadata" playsinline aria-label="Feltöltött kerékpáros videó"><source src="Video.MP4" type="video/mp4">A böngésződ nem támogatja a videó lejátszását.</video></div>
       <p><a href="Video.MP4" download>A feltöltött videó letöltése</a></p>
     </div>
   </section>
@@ -39,6 +61,48 @@
     </div>
   </section>
 </main>
+<dialog class="gallery-viewer" id="galleryViewer" aria-label="Képgaléria">
+  <button class="viewer-close" type="button" aria-label="Galéria bezárása">Bezárás ✕</button>
+  <figure><img id="viewerImage" alt=""><figcaption id="viewerCaption"></figcaption></figure>
+  <div class="viewer-nav"><button id="previousImage" type="button" aria-label="Előző kép">← Előző</button><button id="nextImage" type="button" aria-label="Következő kép">Következő →</button></div>
+</dialog>
 <footer><div class="wrap"><p class="tag">Vigyázz magadra, hordj sisakot, és tekerj sokat! 🚲</p><p>Készítette: Nagy Endre (P0LIHV) · E-tanulás · 2026/27/1</p><p>Források: [ide írd a felhasznált forrásokat]</p></div></footer>
+<script>
+(function () {
+  var images = Array.from(document.querySelectorAll('#photoGallery img'));
+  var dialog = document.getElementById('galleryViewer');
+  var viewerImage = document.getElementById('viewerImage');
+  var caption = document.getElementById('viewerCaption');
+  var currentIndex = 0;
+
+  function showImage(index) {
+    currentIndex = (index + images.length) % images.length;
+    viewerImage.src = images[currentIndex].src;
+    viewerImage.alt = images[currentIndex].alt;
+    caption.textContent = images[currentIndex].alt;
+  }
+
+  images.forEach(function (image, index) {
+    image.addEventListener('click', function () {
+      showImage(index);
+      dialog.showModal();
+    });
+    image.addEventListener('keydown', function (event) {
+      if (event.key === 'Enter' || event.key === ' ') {
+        event.preventDefault();
+        showImage(index);
+        dialog.showModal();
+      }
+    });
+  });
+
+  document.getElementById('previousImage').addEventListener('click', function () { showImage(currentIndex - 1); });
+  document.getElementById('nextImage').addEventListener('click', function () { showImage(currentIndex + 1); });
+  document.querySelector('.viewer-close').addEventListener('click', function () { dialog.close(); });
+  dialog.addEventListener('click', function (event) {
+    if (event.target === dialog) dialog.close();
+  });
+})();
+</script>
 </body>
 </html>
