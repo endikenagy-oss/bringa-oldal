@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#dff4e9">
+  <title>Bringás kihívás – Pedálozz bele!</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Nunito:wght@400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .game-wrap { max-width: 920px; margin: 0 auto; }
+    .game-intro { margin-bottom: 20px; }
+    .game-panel { padding: clamp(16px, 4vw, 28px); }
+    .game-stats { display: flex; justify-content: space-between; gap: 12px; margin-bottom: 12px; font-weight: 800; }
+    .game-stage { position: relative; height: clamp(220px, 42vw, 300px); overflow: hidden; border: 2px solid rgba(18, 30, 55, .12); border-radius: 20px; background: linear-gradient(#dff4ff 0 70%, #e8f7dc 70%); touch-action: manipulation; user-select: none; }
+    .game-stage::after { content: ""; position: absolute; right: 0; bottom: 26px; left: 0; height: 5px; background: repeating-linear-gradient(90deg, #64748b 0 28px, transparent 28px 48px); opacity: .7; }
+    .game-sun { position: absolute; top: 24px; right: 9%; width: 44px; height: 44px; border-radius: 50%; background: #ffd86b; box-shadow: 0 0 35px rgba(255, 216, 107, .45); }
+    .game-cloud { position: absolute; top: 54px; left: 40%; font-size: 2rem; opacity: .7; }
+    .game-rider { position: absolute; z-index: 2; bottom: 25px; left: 8%; font-size: clamp(42px, 8vw, 58px); line-height: 1; transform: translateY(0); }
+    .game-rider.jumping { animation: riderJump .72s cubic-bezier(.25,.7,.35,1); }
+    @keyframes riderJump { 0%,100% { transform: translateY(0) rotate(0); } 45% { transform: translateY(-112px) rotate(-12deg); } 65% { transform: translateY(-112px) rotate(-12deg); } }
+    .game-obstacle { position: absolute; z-index: 2; right: -60px; bottom: 24px; font-size: clamp(32px, 7vw, 46px); line-height: 1; will-change: right; }
+    .game-controls { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; margin-top: 16px; }
+    .game-button { min-height: 48px; padding: 10px 20px; border: 0; border-radius: 14px; background: #00a88f; color: #fff; font: 800 1rem "Nunito", sans-serif; cursor: pointer; }
+    .game-button:hover, .game-button:focus-visible { background: #087c70; outline: 3px solid rgba(0, 168, 143, .25); outline-offset: 2px; }
+    .game-hint { margin: 0; }
+    .game-message { min-height: 1.5em; margin: 12px 0 0; font-weight: 800; }
+    @media (prefers-reduced-motion: reduce) { .game-rider.jumping { animation-duration: .45s; } }
+  </style>
+</head>
+<body>
+<nav aria-label="Fő menü"><a href="index.html">Főoldal</a><a href="tortenet.html">Történet</a><a href="tipusok.html">Típusok</a><a href="turak.html">Túrák</a><a href="berles.html">Bérlés</a><a href="media.html">Média</a><a href="terkep.html">Térkép</a><a href="jatek.html" aria-current="page">Játék</a><a href="infok.html">Infók</a></nav>
+<main class="sub">
+  <section>
+    <div class="wrap game-wrap">
+      <div class="sec-head game-intro">
+        <h2>Bringás kihívás</h2>
+        <p>Ugorj át az úton felbukkanó akadályokon, és gyűjts minél több pontot!</p>
+      </div>
+      <div class="card game-panel">
+        <div class="game-stats"><span>Pont: <span id="score">0</span></span><span>Rekord: <span id="best">0</span></span></div>
+        <div class="game-stage" id="gameStage" role="application" aria-label="Biciklis ugrálós játék. Ugrás a szóközzel, a felfelé nyíllal vagy koppintással.">
+          <span class="game-sun" aria-hidden="true"></span><span class="game-cloud" aria-hidden="true">☁️</span>
+          <span class="game-rider" id="rider" aria-hidden="true">🚴</span>
+          <span class="game-obstacle" id="obstacle" aria-hidden="true" hidden>🦆</span>
+        </div>
+        <div class="game-controls"><button class="game-button" id="startButton" type="button">Játék indítása</button><p class="game-hint">Ugrás: szóköz, ↑ nyíl, koppintás vagy az Ugrás gomb.</p><button class="game-button" id="jumpButton" type="button">Ugrás!</button></div>
+        <p class="game-message" id="gameMessage" aria-live="polite">Készen állsz? Indítsd el a játékot!</p>
+      </div>
+      <div class="card" style="margin-top:20px"><h3>Akadályok</h3><p>Gumikacsa, kő, bója, banánhéj és egy szundikáló táborozó bukkanhat fel. Vigyázz, és ugorj időben!</p></div>
+    </div>
+  </section>
+</main>
+<footer><div class="wrap"><p class="tag">Vigyázz magadra, hordj sisakot, és tekerj sokat! 🚲</p><p>Készítette: Nagy Endre (P0LIHV) · E-tanulás · 2026/27/1</p><p>Források: [ide írd a felhasznált forrásokat]</p></div></footer>
+<script>
+(function () {
+  var stage = document.getElementById('gameStage');
+  var rider = document.getElementById('rider');
+  var obstacle = document.getElementById('obstacle');
+  var scoreElement = document.getElementById('score');
+  var bestElement = document.getElementById('best');
+  var message = document.getElementById('gameMessage');
+  var startButton = document.getElementById('startButton');
+  var jumpButton = document.getElementById('jumpButton');
+  var obstacleTypes = ['🦆', '🪨', '🚧', '🍌', '🏕️'];
+  var running = false;
+  var jumping = false;
+  var score = 0;
+  var best = Number(localStorage.getItem('bringaGameBest') || 0);
+  var obstacleX = 0;
+  var speed = 4;
+  var nextSpawn = 0;
+  var frame = 0;
+  var previousTime = 0;
+  bestElement.textContent = best;
+
+  function jump() {
+    if (!running || jumping) return;
+    jumping = true;
+    rider.classList.remove('jumping');
+    void rider.offsetWidth;
+    rider.classList.add('jumping');
+    window.setTimeout(function () {
+      jumping = false;
+      rider.classList.remove('jumping');
+    }, 720);
+  }
+
+  function endGame() {
+    running = false;
+    obstacle.hidden = true;
+    startButton.textContent = 'Új játék';
+    message.textContent = 'Vége a játéknak! Elért pontszám: ' + score + '. Indítsd újra, és próbálj rekordot dönteni!';
+  }
+
+  function tick(time) {
+    if (!running) return;
+    var delta = previousTime ? Math.min((time - previousTime) / 16.67, 2) : 1;
+    previousTime = time;
+    frame += delta;
+    score = Math.floor(frame / 8);
+    scoreElement.textContent = score;
+    speed = Math.min(4 + score / 45, 10);
+
+    if (obstacle.hidden && frame >= nextSpawn) {
+      obstacle.hidden = false;
+      obstacleX = stage.clientWidth + 20;
+      obstacle.textContent = obstacleTypes[Math.floor(Math.random() * obstacleTypes.length)];
+    }
+
+    if (!obstacle.hidden) {
+      obstacleX -= speed * delta;
+      obstacle.style.right = (stage.clientWidth - obstacleX) + 'px';
+      var riderRect = rider.getBoundingClientRect();
+      var obstacleRect = obstacle.getBoundingClientRect();
+      var overlaps = riderRect.right - 12 > obstacleRect.left + 8 && riderRect.left + 12 < obstacleRect.right - 8;
+      var isAbove = riderRect.bottom < obstacleRect.top + 10;
+      if (overlaps && !isAbove) {
+        endGame();
+        return;
+      }
+      if (obstacleX < -60) {
+        obstacle.hidden = true;
+        nextSpawn = frame + 55 + Math.random() * 65;
+      }
+    }
+
+    frame = frame;
+    if (score > best) {
+      best = score;
+      bestElement.textContent = best;
+      localStorage.setItem('bringaGameBest', best);
+    }
+    requestAnimationFrame(tick);
+  }
+
+  function startGame() {
+    running = true;
+    jumping = false;
+    score = 0;
+    frame = 0;
+    speed = 4;
+    previousTime = 0;
+    obstacle.hidden = true;
+    obstacle.style.right = '-60px';
+    scoreElement.textContent = '0';
+    startButton.textContent = 'Újrakezdés';
+    message.textContent = 'Rajta! Ugorj át minden akadályt!';
+    requestAnimationFrame(tick);
+  }
+
+  startButton.addEventListener('click', startGame);
+  jumpButton.addEventListener('click', jump);
+  stage.addEventListener('pointerdown', function (event) {
+    if (event.target === stage || event.target === rider || event.target === obstacle) jump();
+  });
+  document.addEventListener('keydown', function (event) {
+    if ((event.code === 'Space' || event.code === 'ArrowUp') && !event.repeat) {
+      if (!running) return;
+      event.preventDefault();
+      jump();
+    }
+  });
+})();
+</script>
+</body>
+</html>
