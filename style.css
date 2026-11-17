@@ -15,73 +15,59 @@ summary,
   letter-spacing: -0.03em;
 }
 
-/* Fixed left-side drawer; opens on hover, keyboard focus, or touch focus. */
+/* Mobile navigation: keep every destination visible and horizontally scrollable. */
 @media (max-width: 700px) {
   nav[aria-label="Fő menü"] {
-    position: fixed;
-    top: 14px;
-    left: 14px;
-    right: auto;
+    position: sticky;
+    top: 8px;
     z-index: 1000;
-    width: 52px;
-    height: 48px;
-    max-width: calc(100vw - 28px);
-    margin: 0;
-    padding: 0;
-    display: block;
-    overflow: hidden;
-    border: 1px solid rgba(255, 255, 255, .72);
-    border-radius: 16px;
-    background: rgba(255, 255, 255, .92);
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 4px;
+    width: calc(100% - 24px);
+    max-width: 100%;
+    height: auto;
+    max-height: calc(100dvh - 16px);
+    margin: 8px auto 16px;
+    padding: 7px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    border: 1px solid rgba(255, 255, 255, .78);
+    border-radius: 18px;
+    background: rgba(255, 255, 255, .94);
     box-shadow: 0 8px 26px rgba(18, 30, 55, .16);
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
-    transition: width .22s ease, max-height .22s ease, border-radius .22s ease;
+    scrollbar-width: thin;
+    -webkit-overflow-scrolling: touch;
   }
 
   nav[aria-label="Fő menü"]::before {
-    content: "☰";
-    width: 50px;
-    height: 46px;
-    display: grid;
-    place-items: center;
-    color: var(--ink);
-    font: 700 1.5rem/1 "Nunito", sans-serif;
-    cursor: pointer;
+    content: none;
+    display: none;
   }
 
   nav[aria-label="Fő menü"] a {
-    display: none;
-    margin: 2px 0;
-    padding: 10px 14px;
+    display: block;
+    flex: 0 0 auto;
+    margin: 0;
+    padding: 10px 12px;
     border-radius: 12px;
-    text-align: left;
+    text-align: center;
     white-space: nowrap;
+    font-size: .92rem;
+  }
+
+  nav[aria-label="Fő menü"] a[aria-current="page"] {
+    background: rgba(0, 179, 164, .15);
+    font-weight: 800;
   }
 
   nav[aria-label="Fő menü"] a:hover,
   nav[aria-label="Fő menü"] a:focus-visible {
     background: rgba(18, 20, 31, .08);
-  }
-
-  nav[aria-label="Fő menü"]:hover,
-  nav[aria-label="Fő menü"]:focus-within {
-    width: min(250px, calc(100vw - 28px));
-    height: auto;
-    max-height: calc(100dvh - 28px);
-    padding: 6px;
-    overflow-y: auto;
-    border-radius: 20px;
-  }
-
-  nav[aria-label="Fő menü"]:hover::before,
-  nav[aria-label="Fő menü"]:focus-within::before {
-    display: none;
-  }
-
-  nav[aria-label="Fő menü"]:hover a,
-  nav[aria-label="Fő menü"]:focus-within a {
-    display: block;
+    outline: 2px solid rgba(0, 179, 164, .55);
+    outline-offset: -2px;
   }
 }
 
@@ -91,7 +77,7 @@ footer .wrap > p:last-child {
 }
 
 footer .wrap > p:last-child::after {
-  content: "Internetről származó információk, saját képek, AI tartalom.";
+  content: "Internetről származó információk, saját képek, AI-tartalom.";
   display: inline-block;
   font-size: .95rem;
 }
@@ -107,6 +93,7 @@ footer .wrap > p:last-child::after {
 
 @media (prefers-reduced-motion: reduce) {
   nav[aria-label="Fő menü"] {
+    scroll-behavior: auto;
     transition: none;
   }
 }
