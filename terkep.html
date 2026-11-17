@@ -1,62 +1,85 @@
 <!DOCTYPE html>
-<html lang="hu"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Térkép – Pedálozz bele!</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Nunito:wght@400;600;800&display=swap" rel="stylesheet"><link rel="stylesheet" href="style.css"></head><body>
-<nav aria-label="Fő menü"><a href="index.html">Főoldal</a><a href="tortenet.html">Történet</a><a href="tipusok.html">Típusok</a><a href="turak.html">Túrák</a><a href="berles.html">Bérlés</a><a href="media.html">Média</a><a href="terkep.html" aria-current="page">Térkép</a></nav>
-<main class="sub"><section id="terkep"><div class="wrap">
-  <div class="sec-head">
-    <h2>Kerékpáros helyek a térképen</h2>
-    <svg class="squiggle" viewBox="0 0 150 14" aria-hidden="true"><path d="M2 7q9-9 18 0t18 0 18 0 18 0 18 0 18 0 18 0 18 0" fill="none" stroke="#00b3a4" stroke-width="4" stroke-linecap="round"/></svg>
-    <p>Néhány népszerű bringás célpont, ahova érdemes ellátogatni Magyarországon.</p>
-  </div>
+<html lang="hu">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Térkép – Pedálozz bele!</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Nunito:wght@400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .destination-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)); gap: 12px; margin: 0 0 20px; }
+    .destination-item { display: flex; align-items: stretch; gap: 8px; padding: 8px; border: 1px solid rgba(18, 20, 31, .1); border-radius: 18px; background: #fff; }
+    .destination-item .map-btn { flex: 1; min-width: 0; padding: 10px 12px; border: 0; border-radius: 12px; background: #f0f7ff; color: var(--ink, #182238); font: 700 1rem var(--body, "Nunito", sans-serif); text-align: left; cursor: pointer; }
+    .destination-item .map-btn[aria-pressed="true"] { background: #d7f4ed; box-shadow: inset 0 0 0 2px #00a88f; }
+    .route-link { display: inline-flex; align-items: center; justify-content: center; min-height: 44px; padding: 8px 12px; border-radius: 12px; background: #00a88f; color: #fff; font-weight: 800; text-align: center; text-decoration: none; white-space: nowrap; }
+    .route-link:hover, .route-link:focus-visible { background: #087c70; text-decoration: underline; }
+    .destination-summary { margin: 0 0 16px; }
+    .destination-summary h3 { margin: 0 0 6px; }
+    .map-frame { display: block; width: 100%; height: clamp(300px, 55vw, 480px); border: 0; }
+    @media (max-width: 480px) { .destination-item { flex-direction: column; } .route-link { width: 100%; } }
+  </style>
+</head>
+<body>
+<nav aria-label="Fő menü"><a href="index.html">Főoldal</a><a href="tortenet.html">Történet</a><a href="tipusok.html">Típusok</a><a href="turak.html">Túrák</a><a href="berles.html">Bérlés</a><a href="media.html">Média</a><a href="terkep.html" aria-current="page">Térkép</a><a href="infok.html">Infók</a></nav>
+<main class="sub">
+  <section id="terkep">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2>Kerékpáros helyek a térképen</h2>
+        <svg class="squiggle" viewBox="0 0 150 14" aria-hidden="true"><path d="M2 7q9-9 18 0t18 0 18 0 18 0 18 0 18 0 18 0 18 0" fill="none" stroke="#00b3a4" stroke-width="4" stroke-linecap="round"/></svg>
+        <p>Néhány népszerű bringás célpont Magyarországon. Válassz egy helyet a térkép frissítéséhez, vagy tervezz oda útvonalat.</p>
+      </div>
 
-  <div class="map-card card" style="margin-bottom:26px">
-    <div class="map-actions" style="display:flex;flex-wrap:wrap;gap:10px;margin-bottom:16px">
-      <button class="map-btn" data-lat="46.857" data-lng="17.889" data-name="Balatonfüred" type="button" style="font:600 1rem var(--body);padding:10px 18px;border:0;border-radius:999px;background:#e3e9ff;color:var(--ink);cursor:pointer">Balatonfüred</button>
-      <button class="map-btn" data-lat="47.628" data-lng="20.947" data-name="Tisza-tó" type="button" style="font:600 1rem var(--body);padding:10px 18px;border:0;border-radius:999px;background:#d7f6ee;color:var(--ink);cursor:pointer">Tisza-tó</button>
-      <button class="map-btn" data-lat="47.184" data-lng="18.544" data-name="Velencei-tó" type="button" style="font:600 1rem var(--body);padding:10px 18px;border:0;border-radius:999px;background:#fff1cc;color:var(--ink);cursor:pointer">Velencei-tó</button>
-      <button class="map-btn" data-lat="47.250" data-lng="18.900" data-name="Duna-kanyar" type="button" style="font:600 1rem var(--body);padding:10px 18px;border:0;border-radius:999px;background:#ffe0da;color:var(--ink);cursor:pointer">Duna-kanyar</button>
-      <button class="map-btn" data-lat="47.783" data-lng="16.877" data-name="Fertő-tó" type="button" style="font:600 1rem var(--body);padding:10px 18px;border:0;border-radius:999px;background:#ece6ff;color:var(--ink);cursor:pointer">Fertő-tó</button>
+      <div class="map-card card" style="margin-bottom:26px">
+        <div class="destination-list" aria-label="Kerékpáros úti célok">
+          <div class="destination-item"><button class="map-btn" type="button" data-lat="46.857" data-lng="17.889" data-name="Balatonfüred" data-summary="A Balaton északi partjának népszerű bringás központja. A tó körüli túra többnapos program; indulás előtt ellenőrizd a távot, az időjárást és az aktuális útviszonyokat." aria-pressed="false">Balatonfüred</button><a class="route-link" href="https://www.google.com/maps/dir/?api=1&amp;destination=Balatonf%C3%BCred%2C%20Hungary&amp;travelmode=bicycling" target="_blank" rel="noopener noreferrer">Útvonaltervezés ↗</a></div>
+          <div class="destination-item"><button class="map-btn" type="button" data-lat="47.628" data-lng="20.947" data-name="Tisza-tó" data-summary="Sík, vízparti útvonalai és madármegfigyelő helyei miatt kedvelt célpont. Családoknak is jó választás lehet; nézd meg előre a töltések és kerékpárutak aktuális állapotát." aria-pressed="false">Tisza-tó</button><a class="route-link" href="https://www.google.com/maps/dir/?api=1&amp;destination=Tisza-t%C3%B3%2C%20Hungary&amp;travelmode=bicycling" target="_blank" rel="noopener noreferrer">Útvonaltervezés ↗</a></div>
+          <div class="destination-item"><button class="map-btn" type="button" data-lat="47.184" data-lng="18.544" data-name="Velencei-tó" data-summary="Könnyen elérhető, rövidebb tókerülő túrához is ideális úti cél. A nyári hétvégéken nagyobb forgalomra számíts, és tervezz pihenőket a part mentén." aria-pressed="false">Velencei-tó</button><a class="route-link" href="https://www.google.com/maps/dir/?api=1&amp;destination=Velencei-t%C3%B3%2C%20Hungary&amp;travelmode=bicycling" target="_blank" rel="noopener noreferrer">Útvonaltervezés ↗</a></div>
+          <div class="destination-item"><button class="map-btn" type="button" data-lat="47.250" data-lng="18.900" data-name="Duna-kanyar" data-summary="Folyóparti táj, települések és változatos útvonalak várnak a Dunakanyarban. A pontos útvonal kiválasztásakor vedd figyelembe a forgalmat, a terepet és a kompok menetrendjét." aria-pressed="false">Duna-kanyar</button><a class="route-link" href="https://www.google.com/maps/dir/?api=1&amp;destination=Dunakanyar%2C%20Hungary&amp;travelmode=bicycling" target="_blank" rel="noopener noreferrer">Útvonaltervezés ↗</a></div>
+          <div class="destination-item"><button class="map-btn" type="button" data-lat="47.783" data-lng="16.877" data-name="Fertő-tó" data-summary="A Fertő tó környéke hosszabb, határon átnyúló kerékpártúrához kínál lehetőséget. Indulás előtt ellenőrizd az útvonal nyitottságát, a határátlépést és az időjárást." aria-pressed="false">Fertő-tó</button><a class="route-link" href="https://www.google.com/maps/dir/?api=1&amp;destination=Fert%C5%91-t%C3%B3%2C%20Hungary&amp;travelmode=bicycling" target="_blank" rel="noopener noreferrer">Útvonaltervezés ↗</a></div>
+        </div>
+
+        <div class="destination-summary card" aria-live="polite" aria-atomic="true">
+          <h3 id="destinationTitle">Rövid összefoglaló</h3>
+          <p id="destinationSummary">Válassz egy úti célt a fenti listából: a térkép és ez az összefoglaló az adott helyhez igazodik. Az „Útvonaltervezés” gombbal külön ablakban megnyílik a Google Térkép kerékpáros útvonaltervezője.</p>
+        </div>
+
+        <div class="map-wrap" style="position:relative;border-radius:28px;overflow:hidden;border:2px solid rgba(18,20,31,.08);box-shadow:var(--shadow)">
+          <iframe class="map-frame" id="mapFrame" title="Bringás helyek térképe" src="https://www.google.com/maps?q=47.5,19.0&amp;z=7&amp;output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+      </div>
+
+      <div class="card" style="margin-top:16px">
+        <h3 style="font-size:1.4rem;margin-bottom:12px">Bringás tippek</h3>
+        <ul class="tips">
+          <li>Indulás előtt mindig nézd meg az időjárást, különösen a szél- és eső-előrejelzést.</li>
+          <li>Hosszabb útra vigyél elegendő vizet, elsősegélycsomagot és kerékpárzárat.</li>
+          <li>A tóparti útvonalakon előre tájékozódj a pihenőhelyekről és a kerékpárszervizekről.</li>
+        </ul>
+      </div>
     </div>
-
-    <div class="map-wrap" style="position:relative;border-radius:28px;overflow:hidden;border:2px solid rgba(18,20,31,.08);box-shadow:var(--shadow)">
-      <iframe
-        id="mapFrame"
-        title="Bringás helyek térképe"
-        src="https://www.google.com/maps?q=47.5,19.0&z=7&output=embed"
-        width="100%"
-        height="480"
-        style="border:0;display:block"
-        loading="lazy"
-        referrerpolicy="no-referrer-when-downgrade">
-      </iframe>
-    </div>
-  </div>
-
-  <div class="card" style="margin-top:16px">
-    <h3 style="font-size:1.4rem;margin-bottom:12px">Bringás tippek</h3>
-    <ul class="tips">
-      <li>mindig nézd meg a szél- és esőjárást, főleg nyári túrák alatt,</li>
-      <li>ha hosszabb útvonalat tervezel, vigyél víz, elsősegély-készletet és zárat,</li>
-      <li>a tavak mentén sok helyen vannak megfelelő pihenő és benzinkút lehetőségek.</li>
-    </ul>
-  </div>
-</div></section></main>
+  </section>
+</main>
 <footer><div class="wrap"><p class="tag">Vigyázz magadra, hordj sisakot, és tekerj sokat! 🚲</p><p>Készítette: Nagy Endre (P0LIHV) · E-tanulás · 2026/27/1</p><p>Források: [ide írd a felhasznált forrásokat]</p></div></footer>
 <script>
-(function(){
-  var buttons = document.querySelectorAll('.map-btn');
+(function () {
+  var buttons = Array.from(document.querySelectorAll('.map-btn'));
   var mapFrame = document.getElementById('mapFrame');
+  var title = document.getElementById('destinationTitle');
+  var summary = document.getElementById('destinationSummary');
 
-  buttons.forEach(function(button){
-    button.addEventListener('click', function(){
-      var lat = button.dataset.lat;
-      var lng = button.dataset.lng;
+  buttons.forEach(function (button) {
+    button.addEventListener('click', function () {
       var name = button.dataset.name;
-      mapFrame.src = 'https://www.google.com/maps?q=' + encodeURIComponent(name + ' ' + lat + ',' + lng) + '&z=11&output=embed';
-      buttons.forEach(function(btn){ btn.style.outline = 'none'; });
-      button.style.outline = '2px solid var(--blue)';
-      button.style.outlineOffset = '2px';
+      mapFrame.src = 'https://www.google.com/maps?q=' + encodeURIComponent(name + ' ' + button.dataset.lat + ',' + button.dataset.lng) + '&z=11&output=embed';
+      title.textContent = name;
+      summary.textContent = button.dataset.summary;
+      buttons.forEach(function (item) { item.setAttribute('aria-pressed', item === button ? 'true' : 'false'); });
     });
   });
 })();
 </script>
-</body></html>
+</body>
+</html>
