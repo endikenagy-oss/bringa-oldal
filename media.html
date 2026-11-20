@@ -29,6 +29,7 @@
     .gallery-viewer .viewer-close { display: block; margin: 0 0 8px auto; padding: 6px 14px; }
     .gallery-viewer .viewer-nav { display: flex; justify-content: space-between; gap: 12px; margin-top: 8px; }
     .uploaded-video { display: block; width: 100%; height: auto; max-height: 75vh; }
+    .podcast-audio { display: block; width: 100%; }
   </style>
 </head>
 <body>
@@ -57,7 +58,7 @@
   <section>
     <div class="wrap">
       <div class="sec-head"><h2>Hanganyag</h2></div>
-      <div class="card"><p>Rövid podcast a kerékpározásról (kb. 2–4 perc).</p><audio controls preload="none" src="audio/podcast.mp3">A böngésződ nem támogatja a hanganyagot.</audio></div>
+      <div class="card"><p>Rövid podcast a kerékpározásról (kb. 2–4 perc).</p><audio class="podcast-audio" controls preload="metadata" src="Podcast.m4a">A böngésződ nem támogatja a hanganyag lejátszását. <a href="Podcast.m4a">Töltsd le a podcastot.</a></audio><p><a href="Podcast.m4a" download>A podcast letöltése</a></p></div>
     </div>
   </section>
 </main>
